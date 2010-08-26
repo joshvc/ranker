@@ -1,8 +1,11 @@
 require 'fastercsv'
 
+
+
 namespace :db do
   desc "Fill database from csv file"
   task :populate => :environment do
+
     Rake::Task['db:reset'].invoke
     FasterCSV.foreach("totaloffense.csv") do |row|
       record = Totaloffense.new(
@@ -17,22 +20,24 @@ namespace :db do
         :losses => row[8],
         :ties => row[9]
       )
-        record.winpct = (record.wins.to_f + (record.ties.to_f / 2) ) / record.games.to_f
+        record.winpct = (record.wins + (record.ties / 2) ) / record.games
+        record.touchdownspergame = (record.touchdowns / record.games)
       record.save
       end
-
-# want to perform a method relative_rank on yardsperplay, yardspergame, tds
-# ie, yardsperplayrr = relative_rank(yardsperplay)
-
-
-        maxyardspg = Totaloffense.maximum('yardspergame')
-        minyardspg = Totaloffense.minimum('yardspergame')
-
-      Totaloffense.all.each do |teams|
-
-        teams.yardspergamerr = (teams.yardspergame - minyardspg) / (maxyardspg - minyardspg)
-        teams.save
-        end
     end
+
+
+  task :relative_rank => :environment # load Rails environmen
+  task :relative_rank do
+    Totaloffense.all.each do |team|
+
+     team.relative_rank("yardspergame")
+     team.relative_rank("yardsperplay")
+     team.relative_rank("touchdowns")
+     team.relative_rank("touchdownspergame")
+
+    end
+  end
+
 end
 

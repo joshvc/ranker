@@ -1,40 +1,27 @@
-<table>
-<tr>
-<td>Team</td>
-<td>Games
-<td>W</td>
-<td>L</td>
-<td>Win %</td>
-<td>Total Yards</td>
-<td>Yards Per Game</td>
-<td>Yards Per Game RR</td>
-<td>Total Plays</td>
-<td>Yards Per Play</td>
-<td>Touchdowns</td>
-</tr><% totals = 0 %>
-<% @allteams.each do |allteam| %>
-<tr>
-<td><%= allteam.team %></td>
-<td><%= allteam.games %></td>
-<td><%= allteam.wins %></td>
-<td><%= allteam.losses %></td>
-<td><%= sprintf("%.3f",allteam.winpct) %></td>
-<td><%= allteam.yards %></td>
-<td><%= allteam.yardspergame %></td>
-<td><%= sprintf("%.4f",allteam.yardspergamerr) %>
-<td><%= allteam.plays %></td>
-<td><%= allteam.yardsperplay %></td>
-<td><%= allteam.touchdowns %></td>
-<% totals += allteam.yards %>
-<% end %>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td><%= totals %></td>
-<td></td>
-<td></td>
+here, have some raw  <%= link_to "data", data_path  %>
 
-</table>
+now, what weight ya want?
+
+<%= form_for(@userweight) do |f| %>
+<div>
+  <%= f.label :winweight, "Win Percentage" %><br />
+  <%= f.text_field :winweight %>
+</div>
+<div>
+  <%= f.label :ypgweight, "Yards Per Game" %><br />
+  <%= f.text_field :ypgweight %>
+</div>
+<div>
+  <%= f.label :yppweight, "Yards Per Play" %><br />
+  <%= f.text_field :yppweight %>
+</div>
+<div>
+  <%= f.label :tdweight, "Touchdowns" %><br />
+  <%= f.text_field :tdweight %>
+</div>
+<div>
+  <%= f.submit "Rank 'Em!" %>
+</div>
+
+<% end %>
 

@@ -10,23 +10,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100825173506) do
+ActiveRecord::Schema.define(:version => 20100826173747) do
 
   create_table "totaloffenses", :force => true do |t|
     t.string   "team"
-    t.integer  "games"
-    t.integer  "yards"
-    t.integer  "plays"
+    t.decimal  "games"
+    t.decimal  "yards"
+    t.decimal  "plays"
     t.decimal  "yardsperplay"
-    t.integer  "touchdowns"
+    t.decimal  "touchdowns"
     t.decimal  "yardspergame"
-    t.integer  "wins"
-    t.integer  "losses"
-    t.integer  "ties"
+    t.decimal  "wins"
+    t.decimal  "losses"
+    t.decimal  "ties"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "winpct"
     t.decimal  "yardspergamerr"
+    t.decimal  "yardsperplayrr"
+    t.decimal  "touchdownsrr"
+    t.decimal  "touchdownspergame"
+    t.decimal  "touchdownspergamerr"
   end
 
 end

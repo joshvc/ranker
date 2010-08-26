@@ -1,0 +1,46 @@
+<table>
+<tr>
+<td>Team</td>
+<td>Games
+<td>W</td>
+<td>L</td>
+<td>Win %</td>
+<td>Total Yards</td>
+<td>Yards Per Game</td>
+<td>Yards Per Game RR</td>
+<td>Total Plays</td>
+<td>Yards Per Play</td>
+<td>Yards Per Play RR</td>
+<td>Touchdowns</td>
+<td>Touchdowns/Game
+<td>Touchdowns/Game RR</td>
+</tr><% totals = 0 %>
+<% @allteams.each do |allteam| %>
+<tr>
+<td><%= allteam.team %></td>
+<td><%= sprintf("%.0f",allteam.games) %></td>
+<td><%= allteam.wins %></td>
+<td><%= allteam.losses %></td>
+<td><%= sprintf("%.3f",allteam.winpct) %></td>
+<td><%= allteam.yards %></td>
+<td><%= allteam.yardspergame %></td>
+<td><%= sprintf("%.4f",allteam.yardspergamerr) %>
+<td><%= allteam.plays %></td>
+<td><%= allteam.yardsperplay %></td>
+<td><%= sprintf("%.4f",allteam.yardsperplayrr) %></td>
+<td><%= allteam.touchdowns %></td>
+<td><%= sprintf("%.2f",allteam.touchdownspergame) %>
+<td><%= sprintf("%.4f",allteam.touchdownspergamerr) %></td>
+<% totals += allteam.yards %>
+<% end %>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td><%= totals %></td>
+<td></td>
+<td></td>
+
+</table>
+
