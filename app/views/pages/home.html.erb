@@ -1,8 +1,8 @@
-here, have some raw  <%= link_to "data", data_path  %>
+the raw  <%= link_to "data", data_path  %> is over here <br />
 
-now, what weight ya want?
+input your preferred statistic weights
 
-<%= form_for(@userweight) do |f| %>
+<%= form_for :userweight, @userweight, :url => {:action => "create"} do |f| %>
 <div>
   <%= f.label :winweight, "Win Percentage" %><br />
   <%= f.text_field :winweight %>

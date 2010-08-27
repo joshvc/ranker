@@ -10,5 +10,7 @@ class Totaloffense < ActiveRecord::Base
     eval("self.#{stat}rr = rank")
     self.save
     end
+
+
 end
 
