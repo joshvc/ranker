@@ -1,0 +1,16 @@
+
+
+<table>
+<tr>
+<td>Team</td>
+<td>Score</td>
+</tr>
+
+<% @teamtable.each do |teamlist| %>
+<tr>
+<td><%= teamlist[:team] %></td>
+<td><%= teamlist[:score] %></td>
+</tr>
+<% end %>
+</table>
+

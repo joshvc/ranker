@@ -5,22 +5,22 @@ input your preferred statistic weights
 <%= form_for :userweight, @userweight, :url => {:action => "create"} do |f| %>
 <div>
   <%= f.label :winweight, "Win Percentage" %><br />
-  <%= f.text_field :winweight %>
+  <%= f.select :winweight, [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80] %>
 </div>
 <div>
   <%= f.label :ypgweight, "Yards Per Game" %><br />
-  <%= f.text_field :ypgweight %>
+  <%= f.select :ypgweight, [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50] %>
 </div>
 <div>
   <%= f.label :yppweight, "Yards Per Play" %><br />
-  <%= f.text_field :yppweight %>
+  <%= f.select :yppweight, [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50] %>
 </div>
 <div>
   <%= f.label :tdweight, "Touchdowns" %><br />
-  <%= f.text_field :tdweight %>
+  <%= f.select :tdweight, [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50] %>
 </div>
 <div>
-  <%= f.submit "Rank 'Em!" %>
+  <%= f.submit "Ranky Rank Rank!" %>
 </div>
 
 <% end %>
