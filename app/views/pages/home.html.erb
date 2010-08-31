@@ -8,16 +8,28 @@ input your preferred statistic weights
   <%= f.select :winweight, [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80] %>
 </div>
 <div>
-  <%= f.label :ypgweight, "Yards Per Game" %><br />
+  <%= f.label :ypgweight, "Offense: Yards Per Game" %><br />
   <%= f.select :ypgweight, [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50] %>
 </div>
 <div>
-  <%= f.label :yppweight, "Yards Per Play" %><br />
+  <%= f.label :yppweight, "Offense: Yards Per Play" %><br />
   <%= f.select :yppweight, [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50] %>
 </div>
 <div>
-  <%= f.label :tdweight, "Touchdowns" %><br />
+  <%= f.label :tdweight, "Offense: Touchdowns" %><br />
   <%= f.select :tdweight, [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50] %>
+</div>
+<div>
+  <%= f.label :dypgweight, "Defense: Yards Per Game" %><br />
+  <%= f.select :dypgweight, [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50] %>
+</div>
+<div>
+  <%= f.label :dyppweight, "Defense: Yards Per Play" %><br />
+  <%= f.select :dyppweight, [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50] %>
+</div>
+<div>
+  <%= f.label :dtdweight, "Defense: Touchdowns" %><br />
+  <%= f.select :dtdweight, [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50] %>
 </div>
 <div>
   <%= f.submit "Ranky Rank Rank!" %>

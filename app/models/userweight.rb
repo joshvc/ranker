@@ -1,12 +1,17 @@
 class Userweight
 
-  attr_accessor :winweight, :ypgweight, :yppweight, :tdweight, :userscore
+  attr_accessor :winweight, :ypgweight, :yppweight, :tdweight,
+                :dypgweight, :dyppweight, :dtdweight
 
   def initialize(userweight)
     @winweight = userweight[:winweight]
     @ypgweight = userweight[:ypgweight]
     @yppweight = userweight[:yppweight]
     @tdweight  = userweight[:tdweight]
+
+    @dypgweight = userweight[:dypgweight]
+    @dyppweight = userweight[:dyppweight]
+    @dtdweight = userweight[:dtdweight]
   end
 
 
