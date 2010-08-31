@@ -23,8 +23,10 @@ namespace :db do
         record.winpct = (record.wins + (record.ties / 2) ) / record.games
         record.touchdownspergame = (record.touchdowns / record.games)
       record.save
-      end
     end
+
+
+end
 
 
   task :relative_rank => :environment # load Rails environmen
