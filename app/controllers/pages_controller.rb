@@ -5,6 +5,10 @@ class PagesController < ApplicationController
     totals = 0
   end
 
+  def home
+    @error = session[:error]
+  end
+
 
     def new
      @userweight = Userweight.new
@@ -14,10 +18,19 @@ class PagesController < ApplicationController
   def create
 
    @userweight = Userweight.new(params[:userweight])
-   session[:userweight] = @userweight
+   if
+    (@userweight.winweight.to_f + @userweight.ypgweight.to_f +
+     @userweight.yppweight.to_f + @userweight.tdweight.to_f +
+     @userweight.dypgweight.to_f + @userweight.dyppweight.to_f +
+     @userweight.dtdweight.to_f) == 100
 
+     session[:userweight] = @userweight
+     redirect_to :action => :output
+   else
+     session[:error] = "Inputs do not equal 100 Percent"
+    redirect_to root_path
 
-   redirect_to :action => :output
+   end
 
   end
 

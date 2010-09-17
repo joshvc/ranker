@@ -2,7 +2,13 @@ the raw  <%= link_to "data", data_path  %> is over here <br />
 
 input your preferred statistic weights
 
+<br />
+<% if @error != nil %>
+  <%= @error %>
+<% end %>
+
 <%= form_for :userweight, @userweight, :url => {:action => "create"} do |f| %>
+
 <div>
   <%= f.label :winweight, "Win Percentage" %><br />
   <%= f.select :winweight, [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80] %>

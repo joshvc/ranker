@@ -10,7 +10,47 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100831191603) do
+ActiveRecord::Schema.define(:version => 20100901165641) do
+
+  create_table "passingoffenses", :force => true do |t|
+    t.string   "team"
+    t.decimal  "pogames"
+    t.decimal  "passattempts"
+    t.decimal  "passcompletions"
+    t.decimal  "passinterceptions"
+    t.decimal  "passinterceptionspergame"
+    t.decimal  "passpercentage"
+    t.decimal  "passyards"
+    t.decimal  "passyardsperattempt"
+    t.decimal  "passyardsperattemptrr"
+    t.decimal  "passtouchdowns"
+    t.decimal  "passtouchdownspergame"
+    t.decimal  "passtouchdownspergamerr"
+    t.decimal  "passyardspergame"
+    t.decimal  "passyardspergamerr"
+    t.decimal  "passinterceptionspct"
+    t.decimal  "passinterceptionspctrr"
+    t.decimal  "passyardspercompletion"
+    t.decimal  "passyardspercompletionrr"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rushingoffenses", :force => true do |t|
+    t.string   "team"
+    t.decimal  "rogames"
+    t.decimal  "rushcarries"
+    t.decimal  "rushtotal"
+    t.decimal  "rushyardspergame"
+    t.decimal  "rushtouchdowns"
+    t.decimal  "rushyardsperplay"
+    t.decimal  "rushyardspergamerr"
+    t.decimal  "rushtouchdownspergame"
+    t.decimal  "rushtouchdownspergamerr"
+    t.decimal  "rushyardsperplayrr"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "totaldefenses", :force => true do |t|
     t.string   "team"

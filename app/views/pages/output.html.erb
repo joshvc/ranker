@@ -2,15 +2,18 @@
 
 <table>
 <tr>
+<td>Rank</td>
 <td>Team</td>
 <td>Score</td>
 </tr>
-
+<% rank = 1 %>
 <% @teamtable.each do |teamlist| %>
 <tr>
+<td><%= rank %>
 <td><%= teamlist[:team] %></td>
-<td><%= teamlist[:score] %></td>
+<td><%= sprintf("%.4f", teamlist[:score]) %></td>
 </tr>
+<% rank += 1 %>
 <% end %>
 </table>
 
