@@ -1,6 +1,12 @@
 the raw  <%= link_to "data", data_path  %> is over here <br />
 
-input your preferred statistic weights
+Choose a weight value for each stat, from zero points to five.
+
+<p>Zero value stats will be ignored.
+
+<p>Stats are calculated based on their relative rank- If the best team has 1000
+yards, and the second best team has only 850, the difference is included in the
+calculations.
 
 <br />
 <% if @error != nil %>
@@ -9,34 +15,44 @@ input your preferred statistic weights
 
 <%= form_for :userweight, @userweight, :url => {:action => "create"} do |f| %>
 
-<div>
+<!--><div>
   <%= f.label :winweight, "Win Percentage" %><br />
   <%= f.select :winweight, [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80] %>
 </div>
+< -->
+<h1>Offensive Stats</h1>
+<h2>Total Offense</h2>
 <div>
   <%= f.label :ypgweight, "Offense: Yards Per Game" %><br />
-  <%= f.select :ypgweight, [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50] %>
+  <%= f.select :ypgweight, [0, 1, 2, 3, 4, 5] %>
 </div>
 <div>
   <%= f.label :yppweight, "Offense: Yards Per Play" %><br />
-  <%= f.select :yppweight, [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50] %>
+  <%= f.select :yppweight, [0, 1, 2, 3, 4, 5] %>
 </div>
 <div>
   <%= f.label :tdweight, "Offense: Touchdowns" %><br />
-  <%= f.select :tdweight, [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50] %>
+  <%= f.select :tdweight, [0, 1, 2, 3, 4, 5] %>
 </div>
+<h2>Passing Offense</h2>
+<h2>Rushing Offense</h2>
+<h1>Defensive Stats</h1>
+<h2>Total Defense</h2>
 <div>
   <%= f.label :dypgweight, "Defense: Yards Per Game" %><br />
-  <%= f.select :dypgweight, [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50] %>
+  <%= f.select :dypgweight, [0, 1, 2, 3, 4, 5] %>
 </div>
 <div>
   <%= f.label :dyppweight, "Defense: Yards Per Play" %><br />
-  <%= f.select :dyppweight, [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50] %>
+  <%= f.select :dyppweight, [0, 1, 2, 3, 4, 5] %>
 </div>
 <div>
   <%= f.label :dtdweight, "Defense: Touchdowns" %><br />
-  <%= f.select :dtdweight, [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50] %>
+  <%= f.select :dtdweight, [0, 1, 2, 3, 4, 5] %>
 </div>
+<h2>Passing Defense</h2>
+<h2>Rushing Defense</h2>
+
 <div>
   <%= f.submit "Ranky Rank Rank!" %>
 </div>
