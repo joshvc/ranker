@@ -71,9 +71,18 @@ class PagesController < ApplicationController
                      :plays => stats.plays,
                      :yardsperplay => stats.yardsperplay,
                      :touchdowns => stats.touchdowns,
-                     :touchdownspergame => stats.touchdownspergame
+                     :touchdownspergame => stats.touchdownspergame,
+                     :dplays => @teamd.dplays,
+                     :dyardsperplay => @teamd.dyardsperplay,
+                     :dyards => @teamd.dyards,
+                     :dyardspergame => @teamd.dyardspergame,
+                     :dtouchdowns => @teamd.dtouchdowns,
+                     :dtouchdownspergame => @teamd.dtouchdownspergame
 
                        }
+
+
+
     end
 
 

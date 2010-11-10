@@ -1,5 +1,8 @@
-the raw  <%= link_to "data", data_path  %> is over here <br />
+<head>
+<title>Welcome to Ranker</title>
+</head>
 
+<div class="pull-4">
 Choose a weight value for each stat, from zero points to five.
 
 <p>Zero value stats will be ignored.
@@ -50,12 +53,12 @@ calculations.
   <%= f.label :dtdweight, "Defense: Touchdowns" %><br />
   <%= f.select :dtdweight, [0, 1, 2, 3, 4, 5] %>
 </div>
-<!--><h2>Passing Defense</h2>
-<h2>Rushing Defense</h2><-->
+
 
 <div>
-  <%= f.submit "Ranky Rank Rank!" %>
+  <%= f.submit "Rank!" %>
 </div>
 
 <% end %>
+</div>
 

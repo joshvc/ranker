@@ -1,42 +1,53 @@
-
+<head>
+<title>Detailed Output</title></head>
+<div class="pull-4">
 <table>
 <tr>
-<td>Rank</td>
-<td>Team</td>
-<td>Score</td>
-<td>W</td>
-<td>L</td>
-<td>Win %</td>
-<td>Total Yards</td>
+<th>Rank</th>
+<th>Team</th>
+<th>Score</th>
+<th>W</th>
+<th>L</th>
+<th>Win %</th>
+
+<% if ((@userweight.ypgweight.to_f + @userweight.yppweight.to_f) > 0 )%>
+  <th>Total Yards</th>
+  <th>Total Plays</th>
+<% end %>
 
 <% if (@userweight.ypgweight.to_f > 0) %>
 
-  <td>Yards Per Game</td>
+  <th>Yards Per Game</th>
 <% end %>
 
 <% if (@userweight.yppweight.to_f > 0) %>
-<td>Total Plays</td>
-<td>Yards Per Play</td>
+
+<th>Yards Per Play</th>
 <% end %>
 
 <% if (@userweight.tdweight.to_f > 0) %>
-<td>Touchdowns</td>
-<td>Touchdowns/Game</td>
+<th>Touchdowns</th>
+<th>Touchdowns Per Game</th>
+<% end %>
+
+<% if ((@userweight.dypgweight.to_f + @userweight.dyppweight.to_f) > 0 )%>
+  <th>Defensive Yards</th>
+  <th>Defense Total Plays</th>
 <% end %>
 
 <% if (@userweight.dypgweight.to_f > 0) %>
-  <td>Defensive Yards</td>
-  <td>Defensive Yards Per Game</td>
+
+  <th>Defensive Yards Per Game</th>
 <% end %>
 
 <% if (@userweight.dyppweight.to_f > 0) %>
-<td>Defense Total Plays</td>
-<td>Defensive Yards Per Play</td>
+
+<th>Defensive Yards Per Play</th>
 <% end %>
 
 <% if (@userweight.dtdweight.to_f > 0) %>
-<td>Defense Touchdowns</td>
-<td>Defense Touchdowns/Game</td>
+<th>Touchdowns Allowed</th>
+<th>Touchdowns Allowed Per Game</th>
 <% end %>
 
 </tr>
@@ -48,7 +59,10 @@
 <td> </td>
 <td> </td>
 <td><%= (@userweight.winweight.to_f * 10) %> %</td>
-<td> </td>
+<% if ((@userweight.ypgweight.to_f + @userweight.yppweight.to_f) > 0 )%>
+  <td> </td>
+  <td> </td>
+<% end %>
 
 <% if (@userweight.ypgweight.to_f > 0) %>
 
@@ -57,7 +71,7 @@
 <% end %>
 
 <% if (@userweight.yppweight.to_f > 0) %>
-<td> </td>
+
 <td> <%= sprintf("%.2f",(((10 - @userweight.winweight.to_f) * 0.1) *
               @userweight.yppweight.to_f) * 100) %> % </td>
 <% end %>
@@ -68,43 +82,82 @@
               @userweight.tdweight.to_f) * 100) %> % </td>
 <% end %>
 
+<% if ((@userweight.dypgweight.to_f + @userweight.dyppweight.to_f) > 0 )%>
+  <td></td>
+  <td></td>
+<% end %>
+
+
 <% if (@userweight.dypgweight.to_f > 0) %>
-  <td>Defensive Yards</td>
-  <td>Defensive Yards Per Game</td>
+
+    <td> <%= sprintf("%.2f",(((10 - @userweight.winweight.to_f) * 0.1) *
+              @userweight.dypgweight.to_f) * 100) %> % </td>
 <% end %>
 
 <% if (@userweight.dyppweight.to_f > 0) %>
-<td>Defense Total Plays</td>
-<td>Defensive Yards Per Play</td>
+
+<td> <%= sprintf("%.2f",(((10 - @userweight.winweight.to_f) * 0.1) *
+              @userweight.dyppweight.to_f) * 100) %> % </td>
 <% end %>
 
 <% if (@userweight.dtdweight.to_f > 0) %>
-<td>Defense Touchdowns</td>
-<td>Defense Touchdowns/Game</td>
+<td></td>
+<td> <%= sprintf("%.2f",(((10 - @userweight.winweight.to_f) * 0.1) *
+              @userweight.tdweight.to_f) * 100) %> % </td>
 <% end %>
 
 </tr>
 <% rank = 1 %>
 <% @teamtable.each do |teamlist| %>
-<tr>
-<td><%= rank %>
-<td><%= teamlist[:team] %></td>
-<td><%= sprintf("%.4f", teamlist[:score]) %></td>
+  <tr>
+  <td><%= rank %>
+  <td><%= teamlist[:team] %></td>
+  <td><%= sprintf("%.4f", teamlist[:score]) %></td>
+  <td><%= sprintf("%.0f",teamlist[:wins]) %></td>
+  <td><%= sprintf("%.0f",teamlist[:losses]) %></td>
+  <td><%= sprintf("%.3f",teamlist[:winpct]) %></td>
 
-<td><%= sprintf("%.0f",teamlist[:wins]) %></td>
-<td><%= sprintf("%.0f",teamlist[:losses]) %></td>
-<td><%= sprintf("%.3f",teamlist[:winpct]) %></td>
-<td><%= sprintf("%.0f",teamlist[:yards]) %></td>
-<% if (@userweight.ypgweight.to_f > 0) %>
-<td><%= sprintf("%.2f",teamlist[:yardspergame]) %></td>
-<% end %>
-<% if (@userweight.yppweight.to_f > 0) %>
-<td><%= sprintf("%.0f",teamlist[:plays]) %></td>
-<td><%= sprintf("%.2f",teamlist[:yardsperplay]) %></td>
-<% end %>
+  <% if ((@userweight.ypgweight.to_f + @userweight.yppweight.to_f) > 0 )%>
+    <td><%= sprintf("%.0f",teamlist[:yards]) %></td>
+    <td><%= sprintf("%.0f",teamlist[:plays]) %></td>
+  <% end %>
 
-</tr>
-<% rank += 1 %>
+  <% if (@userweight.ypgweight.to_f > 0) %>
+    <td><%= sprintf("%.2f",teamlist[:yardspergame]) %></td>
+  <% end %>
+
+
+
+  <% if (@userweight.yppweight.to_f > 0) %>
+    <td><%= sprintf("%.2f",teamlist[:yardsperplay]) %></td>
+  <% end %>
+
+  <% if (@userweight.tdweight.to_f > 0) %>
+    <td><%= sprintf("%.0f",teamlist[:touchdowns]) %></td>
+    <td><%= sprintf("%.2f",teamlist[:touchdownspergame]) %></td>
+  <% end %>
+
+  <% if ((@userweight.dypgweight.to_f + @userweight.dyppweight.to_f) > 0 )%>
+    <td><%= sprintf("%.0f",teamlist[:dyards]) %></td>
+    <td><%= sprintf("%.0f",teamlist[:dplays]) %></td>
+  <% end %>
+
+  <% if (@userweight.dypgweight.to_f > 0) %>
+    <td><%= sprintf("%.2f",teamlist[:dyardspergame]) %></td>
+  <% end %>
+
+  <% if (@userweight.dyppweight.to_f > 0) %>
+    <td><%= sprintf("%.2f",teamlist[:dyardsperplay]) %></td>
+  <% end %>
+
+  <% if (@userweight.dtdweight.to_f > 0) %>
+    <td><%= sprintf("%.0f",teamlist[:dtouchdowns]) %></td>
+    <td><%= sprintf("%.2f",teamlist[:dtouchdownspergame]) %></td>
+  <% end %>
+
+  </tr>
+  <% rank += 1 %>
 <% end %>
 </table>
+</div>
 
