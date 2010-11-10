@@ -23,7 +23,7 @@ class PagesController < ApplicationController
 
      session[:userweight] = @userweight
 
-     debugger
+
      redirect_to :action => :output
 #   else
 #     session[:error] = "Inputs do not equal 100 Percent"
@@ -36,12 +36,13 @@ class PagesController < ApplicationController
   def output
 
    @userweight = session[:userweight]
-   @totalpoints = (@userweight.winweight.to_f + @userweight.ypgweight.to_f +
+
+   @totalpoints = (@userweight.ypgweight.to_f +
      @userweight.yppweight.to_f + @userweight.tdweight.to_f +
      @userweight.dypgweight.to_f + @userweight.dyppweight.to_f +
      @userweight.dtdweight.to_f)
 
-  ["winweight", "ypgweight", "yppweight", "yppweight", "tdweight", "dypgweight", "dyppweight",
+  ["ypgweight", "yppweight", "tdweight", "dypgweight", "dyppweight",
     "dtdweight"].each do |reweight|
       eval("@userweight.#{reweight} = @userweight.#{reweight}.to_f / @totalpoints")
     end
@@ -51,7 +52,7 @@ class PagesController < ApplicationController
     Totaloffense.all.each do |stats|
       @teamd = Totaldefense.find_by_team(stats.team)
       @teamtable << {:team => stats.team,
-                      :score => (((@userweight.winweight.to_f ) * stats.winpct) +
+                     :score => ((
                         ((@userweight.ypgweight.to_f ) * stats.yardspergamerr) +
                         ((@userweight.yppweight.to_f ) * stats.yardsperplayrr) +
                         ((@userweight.tdweight.to_f ) * stats.touchdownspergamerr)+
@@ -59,8 +60,22 @@ class PagesController < ApplicationController
                         ((@userweight.dyppweight.to_f ) * @teamd.dyardsperplayrr) +
                         ((@userweight.dtdweight.to_f ) * @teamd.dtouchdownspergamerr)
                         #add a + and put new weight lines here
-                        ) }
+                        ) * ((10 - @userweight.winweight.to_f) * 0.1) +
+                        ((@userweight.winweight.to_f * 0.1) * (stats.winpct) )),
+                     :games => stats.games,
+                     :wins => stats.wins,
+                     :losses => stats.losses,
+                     :winpct => stats.winpct,
+                     :yards => stats.yards,
+                     :yardspergame => stats.yardspergame,
+                     :plays => stats.plays,
+                     :yardsperplay => stats.yardsperplay,
+                     :touchdowns => stats.touchdowns,
+                     :touchdownspergame => stats.touchdownspergame
+
+                       }
     end
+
 
   @teamtable.sort! { |b,a| a[:score] <=> b[:score] }
 

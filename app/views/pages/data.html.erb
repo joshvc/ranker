@@ -5,9 +5,11 @@
 <td>W</td>
 <td>L</td>
 <td>Win %</td>
-<td>Total Yards</td>
-<td>Yards Per Game</td>
-<td>Yards Per Game RR</td>
+<% if @userweight.yardspergame > 0 %>
+  <td>Total Yards</td>
+  <td>Yards Per Game</td>
+  <td>Yards Per Game RR</td>
+  <% end %>
 <td>Total Plays</td>
 <td>Yards Per Play</td>
 <td>Yards Per Play RR</td>
